@@ -14,7 +14,7 @@ Shader "My/NPR/2Pass_Outline"
         CGPROGRAM
         #pragma surface surf Nolight vertex:vert noshadow noambient
 
-        //sampler2D _MainTex;
+        sampler2D _MainTex;
 
         struct Input
         {
@@ -43,9 +43,9 @@ Shader "My/NPR/2Pass_Outline"
 
         void surf (Input IN, inout SurfaceOutput o) // SurfaceOutputStandard --> SurfaceOutput
         {
-            //fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
-            //o.Albedo = c.rgb;
-            //o.Alpha = c.a;
+            fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
+            o.Albedo = c.rgb;
+            o.Alpha = c.a;
         }
 
         float4 LightingNolight (SurfaceOutput s, float3 lightDir, float atten){
